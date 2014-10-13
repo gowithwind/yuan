@@ -3,6 +3,8 @@ Yuan 圆验证
 
 基于旋转圆形图片方向的验证码 
 
+![img](http://gowithwind.github.io/yuan/img/60.png)
+![input3](https://cloud.githubusercontent.com/assets/2367339/4610330/49cb6738-52ae-11e4-99e0-19a055d75c43.gif)
 #初心
 v2ex上看大家讨论极验验证<http://www.geetest.com/>很热烈，发现自己也许可以做点什么。想到了圆形图片的验证方法，
 不过后来的一位v2exer 指出了google的工程师已经提出了这个方式，无奈只能当练习了。
