@@ -71,7 +71,7 @@ document.getElementById('progress').onmousemove=function(e){
 
 function rotate(angle){
     img.style.transform = "rotate("+angle+"deg)";
-    deg.innerText=angle;
+    deg.textContent =angle;
     control.style.left=angle+'px';
     ajax_check(question,angle);
 }
@@ -86,10 +86,10 @@ var qa={
 };
 function ajax_check(question,answer){
 	if(Math.abs(360-qa[question]-angle)<11){
-		info.innerText='success';
+		info.textContent ='success';
 		info.style.color='green';
 	}else{
-		info.innerText='failure';
+		info.textContent ='failure';
 		info.style.color='red';
 	}
 }
