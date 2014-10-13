@@ -1,0 +1,97 @@
+<style>
+#progress{
+    width:360px;
+    height:10px;
+    border:1px solid;
+}
+#control{
+	width:10px;
+	height: 30px;
+	position: relative;
+	left:0px;
+	top:-10px;
+	border:1px solid;
+	background-color: red;
+}
+.box{
+	margin-bottom:20px;
+}
+</style>
+<bodt>
+<h1>Yuan Captcha</h1>
+<div class="box">
+<h2>degree:<span id="deg">0</span>,result:<span id="info"></span></h2>
+</div>
+<div class="box">
+<select id="imgs">
+	<option value="img/60.png">yan 60</option>
+	<option value="img/30.png">yang mi 30</option>
+	<option value="img/70.png">yang mi 70</option>
+</select>
+</div>
+<div class="box">
+<div id='progress'><div id="control"></div></div>
+</div>
+<div class="box">
+    <img src="img/60.png" id="image">  
+<div>
+<script>
+//client
+var angle = 0, img = document.getElementById('image');
+var deg=document.getElementById('deg');
+var info=document.getElementById('info');
+var control=document.getElementById('control');
+var imgs=document.getElementById('imgs');
+var drag=false;
+var question;
+
+imgs.onchange = function() {
+	console.log(imgs.value);
+	question=imgs.value;
+	img.src=imgs.value;
+	degree=0;
+}
+
+imgs.onchange();
+
+control.onmousedown = function(e) {
+	console.log('down ',e);
+	drag=true;
+}
+document.body.onmouseup = function(e) {
+	console.log('up ',e);
+	drag=false;
+}
+document.getElementById('progress').onmousemove=function(e){
+	if(drag){
+		angle=e.pageX-8;//a bug
+		rotate(angle);
+	}
+}
+
+function rotate(angle){
+    img.style.transform = "rotate("+angle+"deg)";
+    deg.innerText=angle;
+    control.style.left=angle+'px';
+    ajax_check(question,angle);
+}
+
+
+
+//server
+var qa={
+	'img/30.png':30,
+	'img/60.png':60,
+	'img/70.png':70,
+};
+function ajax_check(question,answer){
+	if(Math.abs(360-qa[question]-angle)<11){
+		info.innerText='success';
+		info.style.color='green';
+	}else{
+		info.innerText='failure';
+		info.style.color='red';
+	}
+}
+
+</script>
